@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SideNavMenu } from '../../models/side-nav-menu';
 
 @Component({
   selector: 'app-menu-item',
@@ -6,5 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./menu-item.component.scss']
 })
 export class MenuItemComponent {
-  @Input() subMenus!: any;
+  // sub menu items in side nav
+  @Input() subMenus!: SideNavMenu[];
 }

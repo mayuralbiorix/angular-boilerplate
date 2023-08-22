@@ -5,16 +5,7 @@ import { default as menuItemsByRole } from './menu-items.json';
 import { AuthService } from '../../services/auth.service';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { NavigationEnd, Router } from '@angular/router';
-
-type SideNavMenuItems =
-  {
-    string: string;
-    icon: string;
-    link: string;
-    selected?: boolean;
-    expanded?: boolean;
-    subItems?: SideNavMenuItems[];
-  };
+import { SideNavMenu } from '../../models/side-nav-menu';
 
 @Component({
   selector: 'app-layout-container',
@@ -31,7 +22,7 @@ export class LayoutContainerComponent implements OnInit {
   isUserLoggedIn!: boolean;
 
   // items to be displayed in the left hand menu
-  roleBasedMenuItems: SideNavMenuItems[] = [];
+  roleBasedMenuItems: SideNavMenu[] = [];
 
   constructor(
     private navigationService: NavigationService,

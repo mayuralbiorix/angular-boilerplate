@@ -56,8 +56,8 @@
           cursor: pointer;
           align-items: center;
           position: relative;
-          border-radius: 0px 24px
-           24px 0px;
+          // border-radius: 0px 24px
+          //  24px 0px;
           overflow: hidden;
 
           div {
@@ -70,11 +70,14 @@
             }
           }
 
-          &:hover, &.selected {
+          &:hover {
+            background: var(--lilac-50);
+            // color: var(--white);
+          }
+          &.selected {
             background: var(--albiorix);
             color: var(--white);
           }
-
           &.subNav {
             padding-top: 10px;
             display: flex;

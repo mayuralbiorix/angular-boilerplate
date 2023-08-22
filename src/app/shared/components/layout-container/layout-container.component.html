@@ -6,16 +6,16 @@
       <div class="menuSection">
         <div class="itemList">
           <ng-container *ngFor="let item of roleBasedMenuItems">
-              <a class="itemLink" [class.selected]="item.selected">
+              <a [routerLink]="item.link" class="itemLink" [class.selected]="item.selected">
                 <div>
                   <mat-icon>{{item.icon}}</mat-icon>{{item.string}}
-                  <mat-icon *ngIf="item?.subItems" (click)="item.expanded = !item.expanded"> {{ !item.expanded ? 'expand_more': 'expand_less'}}</mat-icon>
+                  <!-- <mat-icon *ngIf="item?.subItems" (click)="item.expanded = !item.expanded"> {{ !item.expanded ? 'expand_more': 'expand_less'}}</mat-icon> -->
                 </div>
               </a>
 
-              <ng-container *ngIf="item.expanded">
+              <!-- <ng-container *ngIf="item.expanded">
                 <app-menu-item [subMenus]="item.subItems"></app-menu-item>
-              </ng-container>
+              </ng-container> -->
             <mat-divider></mat-divider>
           </ng-container>
         </div>
