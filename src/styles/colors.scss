@@ -1,0 +1,83 @@
+// Design System reference: https://www.figma.com/file/CovNAjv8m6FiAZt3GQ5HTr/Mable-brand-library?type=design&node-id=2-5916
+body {
+    --albiorix: #de4948;
+    // Primary colors
+    --orange-500: #f56b0c; // Brand Color
+    --purple-500: #4b187a;
+  
+    // Secondary colors
+    --lilac-50: #f0e4fc;
+    --blue-50: #86e4ed;
+    --cream-50: #ffe0b8;
+  
+    // Neutrals
+    --grey-500: #414042;
+    --grey-400: #747275;
+    --grey-300: #99979c;
+    --grey-200: #e0dfda;
+    --grey-100: #f2f2f2;
+    --grey-50: #f7f7f7;
+    --white: #ffffff;
+    --black: #000000;
+  
+    // Semantics
+    --red-500: #d72a31; // Error color
+    --green-500: #00874e; // Success color
+  
+    // Tones - orange
+    --orange-400: #ff791c;
+    --orange-300: #ff8e40;
+    --orange-200: #ffa363;
+    --orange-100: #ffb887;
+    --orange-50: #ffcdab;
+    --orange-25: #ffcdab;
+  
+    // Tones - purple
+    --purple-400: #6f2bad;
+    --purple-300: #843cc7;
+    --purple-200: #9b4fe0;
+    --purple-100: #b264fa;
+    --purple-50: #bf78ff;
+    --purple-25: #edd9ff;
+  
+    // Tones - lilac
+    --lilac-500: #b56bff;
+    --lilac-400: #c285ff;
+    --lilac-300: #cf9eff;
+    --lilac-200: #dbb8ff;
+    --lilac-100: #e8d1ff;
+    --lilac-25: #f3eafc;
+  
+    // Tones - blue
+    --blue-500: #0c9fad;
+    --blue-400: #20adba;
+    --blue-300: #36bac7;
+    --blue-200: #4ec8d4;
+    --blue-100: #69d6e0;
+    --blue-25: #ceeff2;
+  
+    // Tones - cream
+    --cream-500: #ffa638;
+    --cream-400: #ffb252;
+    --cream-300: #ffbd6b;
+    --cream-200: #ffca85;
+    --cream-100: #ffd59e;
+    --cream-25: #ffeed9;
+  
+    // Tones - green
+    --green-400: #10a164;
+    --green-300: #25ba7c;
+    --green-200: #3fd495;
+    --green-100: #5fedb1;
+    --green-50: #bdf2dc;
+    --green-25: #cef2e3;
+  
+    // Tones - red
+    --red-400: #db3f46;
+    --red-300: #df555a;
+    --red-200: #e36a6f;
+    --red-100: #e77f83;
+    --red-50: #ffc7c9;
+    --red-25: #ffd9da;
+  }
+  

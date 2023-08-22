@@ -1,0 +1,19 @@
+<header class="mainContent">
+    <div class="headerLinks">
+        <button *ngIf="isUserLoggedIn" mat-icon-button [attr.aria-label]="navExpanded ? 'Hide menu' : 'Show menu'"
+            (click)="navigationService.updateNavigationStatus(navExpanded = !navExpanded)">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <a [routerLink]="['/']" aria-label="Go to homepage">
+            <img src="assets/logo/albiorix.png" alt="Albiorix logo" class="logo">
+        </a>
+    </div>
+    <div class="headerItemsContainer" *ngIf="isUserLoggedIn">
+        <button mat-raised-button aria-label="Logout" class="logout-button" (click)="logout()">Logout</button>
+        <button mat-mini-fab aria-label="Logout" class="logout-responsive"
+        (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+</header>

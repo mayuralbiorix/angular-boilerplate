@@ -1,0 +1,81 @@
+{
+
+    "organisation": [
+        {
+            "string": "Dashboard",
+            "icon": "restaurant_menu",
+            "link": "/duplicate/dashboard"
+        }
+    ],
+    "admin": [
+        {
+            "link": "/duplicate/dashboard",
+            "string": "Manage users",
+            "icon": "laptop",
+            "subItems": [
+                {
+                    "link": "/manage/users",
+                    "string": "level 1",
+                    "icon": "",
+                    "subItems": [
+                        {
+                            "link": "/manage/users",
+                            "string": "Manage users",
+                            "icon": "laptop"
+                        },
+                        {
+                            "link": "/manage/users",
+                            "string": "level 2",
+                            "icon": "laptop",
+                            "subItems": [
+                                {
+                                    "link": "/manage/users",
+                                    "string": "Manage users",
+                                    "icon": "laptop"
+                                },
+                                {
+                                    "link": "/manage/users",
+                                    "string": "Manage users",
+                                    "icon": "laptop"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "link": "/manage/users",
+                    "string": "testing",
+                    "icon": "laptop"
+                }
+            ]
+         },
+        {
+            "link": "/duplicate/dashboard1",
+            "string": "CEM regions",
+            "icon": "router"
+        },
+        {
+            "link": "/reports/admin",
+            "string": "Reports",
+            "icon": "smartphone"
+        },
+        {
+            "link": "/duplicate/dashboard2",
+            "string": "Client assignment",
+            "icon": "toys",
+            "subItems": [
+                {
+                    "link": "/manage/users",
+                    "string": "Manage users",
+                    "icon": "laptop"
+                },
+                {
+                    "link": "/manage/users",
+                    "string": "Manage users",
+                    "icon": "laptop"
+                }
+            ]
+        }
+       
+    ]
+}

@@ -1,0 +1,112 @@
+.bodyContainer {
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  &.navCollapse {
+    margin-left: -250px;
+    transition: margin-left 150ms ease-out;
+    nav {
+      visibility: hidden;
+      transition: visibility 500ms 500ms;
+    }
+  }
+  &.navExpand {
+    transition: margin-left 150ms ease-out;
+    margin-left: 0; 
+
+    nav {
+      visibility: visible;
+      transition: none;
+    }
+  }
+
+  nav {
+    width: 250px;
+    min-width: 250px;
+    background-color: var(--white);
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    // color: var(--grey-50);
+
+    .menuSection {
+      width: calc(100% - 24px);
+      padding: 16px 0;
+      padding-left: 0;
+      box-sizing: border-box;
+      position: relative;
+
+      .itemList {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        padding-bottom: 1.5rem;
+
+        .itemLink {
+          padding:12px 8px;
+          width: 100%;
+          clear: both;
+          text-decoration: none;
+          color: var(--grey-500);
+          padding-right: 0;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          cursor: pointer;
+          align-items: center;
+          position: relative;
+          border-radius: 0px 24px
+           24px 0px;
+          overflow: hidden;
+
+          div {
+            display: flex;
+            align-items: center;
+
+            mat-icon {
+              z-index: 1;
+              margin-right: 8px;
+            }
+          }
+
+          &:hover, &.selected {
+            background: var(--albiorix);
+            color: var(--white);
+          }
+
+          &.subNav {
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+  .contentWrapper {
+    min-height: calc(100vh - 80px);
+    width: calc(100% - 250px);
+    min-width: 320px;
+    flex: 1;
+
+    .content {
+      min-height: 100%;
+      box-sizing: border-box;
+    }
+
+    app-footer {
+      padding: 16px;
+      display: block;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .mainContent {
+    overflow: hidden;
+    max-width: 100vw;
+  }
+}

@@ -1,0 +1,117 @@
+#compactFooter{
+    font-size: .7rem;
+}
+
+#fullFooter{
+    display: flex;
+    flex-direction: column;
+    font-size: .9rem;
+    max-width: 1000px;
+    margin: auto;
+    width: 100%;
+    padding: 128px 24px 55px;
+    
+    #footerLinksWrapper{
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+        
+        #logoAndDownloadWrapper{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            
+            p{
+                font-size: 1rem;
+                font-weight: bold;
+                margin-top: 24px;
+            }
+            
+            #mableLogo{
+                height: 35px;
+            }
+            
+            #appIcons{
+                img{
+                    height: 45px;
+                    margin-right: 8px;
+                }
+            }
+        }
+        
+        
+        #linkCols{
+            display: flex;
+            flex: 1;
+            justify-content: space-evenly;
+            color: var(--white);
+            
+            >div{
+                margin-right: 16px;
+                
+                &:last-of-type{
+                    margin-right: 0;
+                }
+                
+                ul{
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    
+                    &:last-of-type{
+                        margin-right: 0;
+                    }
+                    
+                    a{
+                        text-decoration: none;
+                        color: var(--white);
+
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    #footerMainCopy{
+        margin-top: 32px;
+        max-width: 675px;
+    }
+}
+
+@media (max-width: 1050px) {
+    #fullFooter{
+        padding: 100px 55px 55px 55px;
+        box-sizing: border-box;
+
+        #footerLinksWrapper{
+            flex-direction: column;
+
+            #logoAndDownloadWrapper{
+                margin-bottom: 24px;
+            }
+
+            #linkCols{
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    #fullFooter{
+        padding: 30px 30px 30px 30px;
+
+        #footerLinksWrapper{
+            #linkCols{
+                flex-direction: column;
+
+                >div{
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+}
