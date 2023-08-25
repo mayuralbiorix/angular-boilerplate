@@ -3,7 +3,7 @@ import { NavigationService } from '../../services/navigation.service';
 import { Subject, takeUntil } from 'rxjs';
 import { default as menuItemsByRole } from './menu-items.json';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { SideNavMenu } from '../../models/side-nav-menu';
 
 @Component({
@@ -39,6 +39,7 @@ export class LayoutContainerComponent implements OnInit {
   ngOnInit(): void {
     this.getMenuItems();
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
+    this.watchForRouteChanges();
     this.exapandTheSideNavUntilAlreadySelectedNav();
   }
 
@@ -70,7 +71,7 @@ export class LayoutContainerComponent implements OnInit {
   private createPathForTargetNav(subNav: SideNavMenu[], targetLink: string, currentPath: string): string {
     for (const node of subNav) {
       // loop all and find if the node matches the target 
-      if (node?.link && node.link === targetLink) {
+      if (node?.link && targetLink.includes(node.link)) {
         // add the target node to path end
         return currentPath + '/' + node.string;
       } else if (node.subItems) {
@@ -99,5 +100,17 @@ export class LayoutContainerComponent implements OnInit {
         this.tranverseToTheSelectedNav(navItem.subItems as SideNavMenu[], searchStrings, currentLevel, maxLevel)
       }
     })
+  }
+
+  /**
+   * Watch for route changes to expand the side nav based on the route rul.
+   */
+  watchForRouteChanges(): void {
+    this.router.events.pipe(takeUntil(this.onDestroySubject)).subscribe((routerEvent) => {
+      // Some functions only need to be called on navigation end (when route change is completed)
+      if (routerEvent instanceof NavigationEnd) {
+        this.exapandTheSideNavUntilAlreadySelectedNav();
+      }
+    });
   }
 }
