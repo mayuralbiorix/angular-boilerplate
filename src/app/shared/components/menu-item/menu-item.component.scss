@@ -1,5 +1,10 @@
-.itemLink {
-    padding:12px 8px;
+.itemList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+  .itemLink {
+    padding: 12px 8px;
     width: 100%;
     clear: both;
     text-decoration: none;
@@ -11,8 +16,6 @@
     cursor: pointer;
     align-items: center;
     position: relative;
-    border-radius: 0px 24px
-     24px 0px;
     overflow: hidden;
 
     div {
@@ -25,14 +28,13 @@
       }
     }
 
-    &:hover, &.selected {
+    &:hover {
+      background: var(--lilac-50);
+    }
+
+    &.active {
       background: var(--albiorix);
       color: var(--white);
     }
-
-    &.subNav {
-      padding-top: 10px;
-      display: flex;
-      justify-content: center;
-    }
   }
+}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { LoggedInAuthGuard } from './shared/guards/logged-in-auth.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
     canActivate: [LoggedInAuthGuard],
     
   },
+
+  {
+    path:'**', component:NotFoundComponent
+  }
 ];
 
 @NgModule({

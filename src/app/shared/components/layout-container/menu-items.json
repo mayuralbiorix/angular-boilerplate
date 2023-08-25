@@ -1,27 +1,81 @@
 {
-
-    "organisation": [
+  "organisation": [
+    {
+      "string": "Dashboard",
+      "icon": "restaurant_menu",
+      "link": "dashboard/admin-dashboard"
+    }
+  ],
+  "admin": [
+    {
+      "string": "Dashboard",
+      "icon": "restaurant_menu",
+      "link": "/dashboard/admin-dashboard"
+    },
+    {
+      "string": "Home",
+      "icon": "home",
+      "subItems": [
         {
-            "string": "Dashboard",
-            "icon": "restaurant_menu",
-            "link": "/duplicate/dashboard"
-        }
-    ],
-    "admin": [
-        {
-            "link": "/duplicate/dashboard",
-            "string": "Manage users",
-            "icon": "laptop"
-         },
-        {
-            "link": "/duplicate/dashboard1",
-            "string": "CEM regions",
-            "icon": "router"
+          "string": "Home 1",
+          "subItems": [
+            {
+              "string": "Home 1 1"
+            },
+            {
+              "string": "Home 1 2 "
+            }
+          ]
         },
         {
-            "link": "/duplicate/dashboard2",
-            "string": "Client assignment",
-            "icon": "toys"
+          "string": "Home 2"
         }
-    ]
+      ]
+    },
+    {
+      "string": "ME",
+      "icon": "person",
+      "subItems": [
+        {
+          "string": "ME 1",
+          "link": "/dashboard/hr-dashboard"
+        },
+        {
+          "string": "ME 2",
+          "subItems": [
+            {
+              "string": "ME 2 1",
+              "link": "/dashboard/test-dashboard"
+            },
+            {
+              "string": "ME 2 2",
+              "link": "/dashboard/client-dashboard"
+            }
+          ]
+        },
+        {
+          "string": "ME 3",
+          "subItems": [
+            {
+              "string": "ME 3 1",
+              "link": "/dashboard/org-dashboard"
+            },
+            {
+              "string": "ME 3 2",
+              "subItems": [
+                {
+                  "string": "this",
+                  "link": "/dashboard/this-dashboard"
+                },
+                {
+                  "string": "ME 3 2",
+                  "link": "/dashboard/carer-dashboard"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

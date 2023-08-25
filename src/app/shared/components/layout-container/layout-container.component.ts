@@ -3,8 +3,7 @@ import { NavigationService } from '../../services/navigation.service';
 import { Subject, takeUntil } from 'rxjs';
 import { default as menuItemsByRole } from './menu-items.json';
 import { AuthService } from '../../services/auth.service';
-import { MatMenuTrigger } from '@angular/material/menu';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SideNavMenu } from '../../models/side-nav-menu';
 
 @Component({
@@ -40,7 +39,7 @@ export class LayoutContainerComponent implements OnInit {
   ngOnInit(): void {
     this.getMenuItems();
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
-    this.watchForRouteChanges();
+    this.exapandTheSideNavUntilAlreadySelectedNav();
   }
 
   /**
@@ -50,43 +49,55 @@ export class LayoutContainerComponent implements OnInit {
     this.roleBasedMenuItems = menuItemsByRole['admin'];
   }
 
-  toggleMenu(menuTrigger: MatMenuTrigger, open: boolean) {
-    if (open) { menuTrigger.openMenu(); return; }
-    menuTrigger.closeMenu();
+  /**
+   * Expand all the nav menus until finding the particular side nav to be selected.
+   */
+  private exapandTheSideNavUntilAlreadySelectedNav(): void {
+    const path = this.createPathForTargetNav(this.roleBasedMenuItems, this.router.url, '');
+    const pathLevelArray = path.split('/').filter(element => element);;
+    if (pathLevelArray.length > 0) {
+      this.tranverseToTheSelectedNav(this.roleBasedMenuItems, pathLevelArray, 0, pathLevelArray.length - 1);
+    }
   }
 
   /**
-     * Watch for route changes and update the "selected" status of menu items
-     * by comparing the menu item's route to the current route.
-     *
-     *
-     */
-  watchForRouteChanges(): void {
-    this.router.events.pipe(takeUntil(this.onDestroySubject)).subscribe((routerEvent) => {
-      // Some functions only need to be called on navigation end (when route change is completed)
-      if (routerEvent instanceof NavigationEnd) {
-        this.updateMenuItemHighlight();
+   * Creating the path to the target nav to identify which nav menu should be selected. 
+   * @param subNav - nav menus list.
+   * @param targetLink - target nav item link to be searched for.
+   * @param currentPath - keep track of the navigation path, 
+   * @returns 
+   */
+  private createPathForTargetNav(subNav: SideNavMenu[], targetLink: string, currentPath: string): string {
+    for (const node of subNav) {
+      // loop all and find if the node matches the target 
+      if (node?.link && node.link === targetLink) {
+        // add the target node to path end
+        return currentPath + '/' + node.string;
+      } else if (node.subItems) {
+        const path = this.createPathForTargetNav(node.subItems, targetLink, currentPath + '/' + node.string);
+        if (path) return path;
       }
-    });
+    }
+    return '';
   }
 
   /**
-     * Adds the "selected" class to the item on the menu that matches the current route.
-     */
-  updateMenuItemHighlight(): void {
-    // loop through the items and set them all to unselected, unless they are the currently active item
-
-    const firstRouteElement = this.router.url;
-
-    this.roleBasedMenuItems.forEach((item) => {
-      item['selected'] = false;
-      const firstItemLinkElement = item.link;
-      if (
-        firstRouteElement === firstItemLinkElement
-        || (firstRouteElement === 'conversation' && firstItemLinkElement === 'inbox')
-      ) {
-        item['selected'] = true;
+   * Traverse to the selected nav to find and expand the side nav until the selected one is highlighted
+   * @param menuItems - nav menu items. 
+   * @param searchString - array of nav search string to be traverse through. 
+   * @param currentLevel - to keep track of hierarchy level. 
+   * @param maxLevel - the max hierarchy level need to traverse through in the nav menu items. 
+   */
+  private tranverseToTheSelectedNav(menuItems: SideNavMenu[], searchStrings: string[], currentLevel: number, maxLevel: number): void {
+    menuItems.forEach((navItem: SideNavMenu) => {
+      if (currentLevel === maxLevel) {
+        return;
       }
-    });
+      if (navItem.string === searchStrings[currentLevel]) {
+        navItem.expanded = true;
+        currentLevel++;
+        this.tranverseToTheSelectedNav(navItem.subItems as SideNavMenu[], searchStrings, currentLevel, maxLevel)
+      }
+    })
   }
 }

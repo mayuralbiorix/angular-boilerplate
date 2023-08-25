@@ -1,12 +1,25 @@
-<ng-container *ngFor="let menu of subMenus">
-    <a [routerLink]="menu?.link" class="itemLink subNav">
+<div class="itemList">
+  <ng-container *ngFor="let menuItem of menuItems">
+    <a class="itemLink" *ngIf="!menuItem?.subItems; else subNavMenus" [routerLink]="menuItem.link"
+      routerLinkActive="active" (click)="expandOrCollapse(menuItem)">
       <div>
-        <mat-icon>{{menu.icon}}</mat-icon>{{menu.string}} {{menu.expanded}}
-        <mat-icon *ngIf="menu?.subItems" (click)="menu.expanded = !menu.expanded"> {{ !menu.expanded ? 'expand_more': 'expand_less'}}</mat-icon>
+        <mat-icon>{{menuItem.icon}}</mat-icon>{{menuItem.string}}
       </div>
     </a>
-    <ng-container *ngIf="menu.expanded">
-      <!-- <app-menu-item [subMenus]="menu?.subItems"></app-menu-item> -->
-    </ng-container>
-  <mat-divider></mat-divider>
-</ng-container>
+    <ng-template #subNavMenus>
+      <a class="itemLink" (click)="expandOrCollapse(menuItem)">
+        <div>
+          <mat-icon>{{menuItem.icon}}</mat-icon>{{menuItem.string}}
+        </div>
+        <div>
+          <mat-icon> {{ !menuItem.expanded ?
+            'expand_more': 'expand_less'}}</mat-icon>
+        </div>
+      </a>
+      <ng-container *ngIf="menuItem.expanded">
+        <app-menu-item [menuItems]="menuItem?.subItems!"></app-menu-item>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</div>
+<mat-divider></mat-divider>
