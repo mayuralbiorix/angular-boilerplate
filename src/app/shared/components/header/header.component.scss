@@ -19,42 +19,46 @@ header {
   overflow: hidden;
   box-sizing: border-box;
 
-  .headerLinks {
+  .header-links {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 24px;
 
-    .logo {
+    &__logo {
       height: 50px;
     }
   }
 
-  .headerItemsContainer {
+  .header-items-container {
     display: flex;
     height: 100%;
-    margin: 0;
     padding: 0;
     align-items: center;
+
+    &__profile-menu {
+      width: auto;
+    }
     
-    .logout-button,.logout-responsive {
-      color: var(--white);
-      background: var(--albiorix);
+    &__profile-image {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-right: 5px;
     }
 
-    .logout-responsive {
-      display: none;
+    &__profile-menu:hover {
+      cursor: pointer !important;
     }
   }
 }
 
 @media (max-width: 650px) {
-    .logout-button {
-      display: none;
-    }
 
-    .logout-responsive {
-      display: block !important;
+  .header-items-container{
+    &__user-name, mat-icon{
+        display: none;
     }
+  }
 }

@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { default as menuItemsByRole } from './menu-items.json';
 import { AuthService } from '../../services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { SideNavMenu } from '../../models/side-nav-menu';
+import { SideNavMenu } from '../../models/side-nav-menu.model';
 
 @Component({
   selector: 'app-layout-container',

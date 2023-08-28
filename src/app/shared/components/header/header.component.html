@@ -1,19 +1,34 @@
 <header class="mainContent">
-    <div class="headerLinks">
+    <div class="header-links">
         <button *ngIf="isUserLoggedIn" mat-icon-button [attr.aria-label]="navExpanded ? 'Hide menu' : 'Show menu'"
             (click)="navigationService.updateNavigationStatus(navExpanded = !navExpanded)">
             <mat-icon>menu</mat-icon>
         </button>
 
         <a [routerLink]="['/']" aria-label="Go to homepage">
-            <img src="assets/logo/albiorix.png" alt="Albiorix logo" class="logo">
+            <img src="assets/logo/albiorix.png" alt="Albiorix logo" class="header-links__logo">
         </a>
     </div>
-    <div class="headerItemsContainer" *ngIf="isUserLoggedIn">
-        <button mat-raised-button aria-label="Logout" class="logout-button" (click)="logout()">Logout</button>
-        <button mat-mini-fab aria-label="Logout" class="logout-responsive"
-        (click)="logout()">
-            <mat-icon>logout</mat-icon>
+    <div class="header-items-container" *ngIf="isUserLoggedIn">
+        <button mat-icon-button disableRipple [matMenuTriggerFor]="profile" aria-label="Profile menu" class="header-items-container__profile-menu">
+            <img class="header-items-container__profile-image" [src]="userDetail.avatar"
+            alt="Profile Image">
+            <span class="header-items-container__user-name">{{userDetail.firstName}}</span>
+            <mat-icon>expand_more</mat-icon>
         </button>
+        <mat-menu #profile="matMenu">
+            <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>password</mat-icon>
+                <span>Change Password</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
     </div>
 </header>

@@ -15,23 +15,8 @@ const routes: Routes = [
       {
         path: 'org-dashboard',
         component: AdminDashboardComponent,
+        
       },
-      {
-        path: 'test-dashboard',
-        component: AdminDashboardComponent,
-      },
-      {
-        path: 'client-dashboard',
-        component: AdminDashboardComponent,
-      },
-      {
-        path: 'carer-dashboard',
-        component: AdminDashboardComponent,
-      },
-      {
-        path: 'this-dashboard',
-        component: AdminDashboardComponent,
-      }
     ]
   },
 ];

@@ -6,7 +6,7 @@
     width: 100vw;
 }
 
-.notFound {
+.not-found {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -14,16 +14,18 @@
     flex-direction: column;
     max-width: 570px;
     margin: 16px;
+    h1 {
+        font-weight: bold;
+    }
 
-    .goBack {
+    &__go-back {
       background: var(--albiorix);
       color: var(--white);
-        
     }
 }
 
 @media screen and (max-width: 550px) {
-    .notFound {
+    .not-found {
         align-items: center;
         text-align: center;
     }

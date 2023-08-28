@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationService } from '../../services/navigation.service';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,9 @@ export class HeaderComponent implements OnInit {
   // Store user login status.
   isUserLoggedIn!: boolean;
 
+  // user details
+  userDetail!: User;
+
   constructor(public navigationService: NavigationService,
     private auth: AuthService,) {
     this.navigationService.isNavExpanded().subscribe((navExpanded) => {
@@ -22,6 +26,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
+    this.userDetail = this.auth.getUser();
   }
 
   /**
