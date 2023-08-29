@@ -1,7 +1,8 @@
 import {
   Directive, HostListener
 } from '@angular/core';
-import { NavigationService } from '../services/navigation.service';
+import { setNavStatus } from 'src/app/store/app-action';
+import { Store } from '@ngrx/store';
 
 /**
  * This purpose of directive is to show/hide the side navigation based for mobile responsive/ screen window size.
@@ -11,14 +12,13 @@ import { NavigationService } from '../services/navigation.service';
 })
 
 export class NavAutoCloseDirective {
-  constructor(private navigationService: NavigationService) { }
-
+  constructor(private store: Store) { }
   /**
    * Listens for screen resize events.
    * 
    */
   @HostListener('window:resize', ['$event.target'])
   OnResize() {
-    this.navigationService.updateNavigationStatus(window.innerWidth >= 650);
+    this.store.dispatch(setNavStatus({ navStatus: { isNavExpanded: window.innerWidth >= 650} }));
   }
 }

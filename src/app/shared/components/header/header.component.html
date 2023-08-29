@@ -1,7 +1,7 @@
 <header class="mainContent">
     <div class="header-links">
         <button *ngIf="isUserLoggedIn" mat-icon-button [attr.aria-label]="navExpanded ? 'Hide menu' : 'Show menu'"
-            (click)="navigationService.updateNavigationStatus(navExpanded = !navExpanded)">
+            (click)="updateNavState()">
             <mat-icon>menu</mat-icon>
         </button>
 

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationService } from '../../services/navigation.service';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
+import { Store } from '@ngrx/store';
+import { selectNavStatus } from 'src/app/store/app-selector';
+import { setNavStatus } from 'src/app/store/app-action';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -17,16 +20,31 @@ export class HeaderComponent implements OnInit {
   // user details
   userDetail!: User;
 
-  constructor(public navigationService: NavigationService,
-    private auth: AuthService,) {
-    this.navigationService.isNavExpanded().subscribe((navExpanded) => {
-      this.navExpanded = navExpanded;
-    });
+  // subject for onDestroy, used to unsubscribe from subscriptions when the component is destroyed
+  onDestroySubject = new Subject<void>();
+
+  constructor(
+    private auth: AuthService,
+    private store: Store
+    ) {
   }
 
   ngOnInit(): void {
+    // subscribing to the nav status from from the app state
+    this.store.select(selectNavStatus).pipe(takeUntil(this.onDestroySubject)).subscribe((navExpanded) => {
+      this.navExpanded = navExpanded;
+    });
+
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
     this.userDetail = this.auth.getUser();
+  }
+
+
+  /**
+   * Updating the side nav status
+   */
+  updateNavState(): void{
+    this.store.dispatch(setNavStatus({ navStatus: { isNavExpanded: !this.navExpanded} }));
   }
 
   /**

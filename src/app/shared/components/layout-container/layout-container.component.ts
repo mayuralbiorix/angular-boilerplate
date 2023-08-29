@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationService } from '../../services/navigation.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { default as menuItemsByRole } from './menu-items.json';
 import { AuthService } from '../../services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { SideNavMenu } from '../../models/side-nav-menu.model';
+import { Store } from '@ngrx/store';
+import { selectNavStatus } from 'src/app/store/app-selector';
 
 @Component({
   selector: 'app-layout-container',
@@ -12,7 +13,7 @@ import { SideNavMenu } from '../../models/side-nav-menu.model';
   styleUrls: ['./layout-container.component.scss'],
 })
 export class LayoutContainerComponent implements OnInit {
-  navExpanded!: boolean; // state of our left hand menu
+  navExpanded$!: Observable<boolean>; // state of our left hand menu
 
   // subject for onDestroy, used to unsubscribe from subscriptions when the component is destroyed
   onDestroySubject = new Subject<void>();
@@ -24,19 +25,13 @@ export class LayoutContainerComponent implements OnInit {
   roleBasedMenuItems: SideNavMenu[] = [];
 
   constructor(
-    private navigationService: NavigationService,
     private auth: AuthService,
-    private router: Router) {
-
-    this.navigationService
-      .isNavExpanded()
-      .pipe(takeUntil(this.onDestroySubject))
-      .subscribe((navExpanded) => {
-        this.navExpanded = navExpanded;
-      });
+    private router: Router,
+    private store: Store) {
   }
 
   ngOnInit(): void {
+    this.navExpanded$ = this.store.select(selectNavStatus);
     this.getMenuItems();
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
     this.watchForRouteChanges();
