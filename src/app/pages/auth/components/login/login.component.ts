@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {
     * Submit the user login details
     * @returns 
     */
-   async login(): Promise<void> {
+   async login(userType: string): Promise<void> {
      if (this.form.invalid) {
        this.form.markAllAsTouched();
        return;
      }
      try {
-      this.auth.login(this.form.value);
+      this.auth.login({ ...this.form.value, userType });
       this.router.navigate(['/']);
      } catch (error) {
       console.log('error')

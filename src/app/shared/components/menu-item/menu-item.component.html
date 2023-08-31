@@ -18,8 +18,9 @@
       </a>
       <ng-container *ngIf="menuItem.expanded">
         <app-menu-item [menuItems]="menuItem?.subItems!"></app-menu-item>
+        <mat-divider></mat-divider>
       </ng-container>
+      
     </ng-template>
   </ng-container>
 </div>
-<mat-divider></mat-divider>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
@@ -8,12 +8,12 @@ import { Location } from '@angular/common';
 })
 export class NotFoundComponent {
 
-  constructor(private location: Location) { }
+  constructor(private route: Router) { }
     
   /**
-   * Go back to the previous page.
+   * Go back to the dashboard.
    */
-   goBack(): void {
-    this.location.back();
+  goBackDashboard(): void {
+    this.route.navigate(['/']);
   }
 }

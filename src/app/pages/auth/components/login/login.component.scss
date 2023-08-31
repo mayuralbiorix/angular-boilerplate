@@ -1,0 +1,12 @@
+div {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  button {
+    margin: 20px 0;
+    width: 200px;
+    background-color: var(--albiorix);
+  }
+}

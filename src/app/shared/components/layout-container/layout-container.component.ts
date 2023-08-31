@@ -21,6 +21,9 @@ export class LayoutContainerComponent implements OnInit {
   // Store user login status.
   isUserLoggedIn!: boolean;
 
+  // logged in user role.
+  userRole!: string;
+
   // items to be displayed in the left hand menu
   roleBasedMenuItems: SideNavMenu[] = [];
 
@@ -32,6 +35,7 @@ export class LayoutContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.navExpanded$ = this.store.select(selectNavStatus);
+    this.userRole = this.auth.getUserType()
     this.getMenuItems();
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
     this.watchForRouteChanges();
@@ -41,8 +45,10 @@ export class LayoutContainerComponent implements OnInit {
   /**
    * Get side navigation menu items based on the user role
    */
-  private getMenuItems() {
-    this.roleBasedMenuItems = menuItemsByRole['admin'];
+  private getMenuItems(): void {
+    this.roleBasedMenuItems = (menuItemsByRole as { [key: string]: SideNavMenu[] })[this.userRole];
+    // reset the side nav to collapse
+      this.resetSideNav(this.roleBasedMenuItems);
   }
 
   /**
@@ -96,6 +102,20 @@ export class LayoutContainerComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * Reset side nav to collapse
+   * 
+   * @param nav - the side nav lists
+   */
+  private resetSideNav(nav: SideNavMenu[]): void {
+    for (let parent of nav) {
+      if (parent.subItems) {
+        parent.expanded = false;
+        this.resetSideNav(parent.subItems);
+      }
+    }
+  };
 
   /**
    * Watch for route changes to expand the side nav based on the route rul.

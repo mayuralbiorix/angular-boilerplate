@@ -1,9 +1,23 @@
 {
-  "organisation": [
+  "employee": [
     {
       "string": "Dashboard",
       "icon": "restaurant_menu",
-      "link": "dashboard/admin-dashboard"
+      "link": "dashboard/employee-dashboard"
+    },
+    {
+      "string": "ME",
+      "icon": "person",
+      "subItems": [
+        {
+          "string": "Attendence",
+          "link": "/me/attendence"
+        },
+        {
+          "string": "Leave",
+          "link": "/me/leave"
+        }
+      ]
     }
   ],
   "admin": [
@@ -22,7 +36,11 @@
         },
         {
           "string": "Attendence",
-          "link": "/me/Attendence"
+          "link": "/me/attendence"
+        },
+        {
+          "string": "Employee leaves",
+          "link": "/me/employee-leaves"
         }
       ]
     }

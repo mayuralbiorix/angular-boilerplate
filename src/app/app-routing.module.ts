@@ -7,23 +7,25 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>  import('./pages/main-app-container/main-app-container.module').then(
+    loadChildren: () => import('./pages/main-app-container/main-app-container.module').then(
       (m) => m.MainAppContainerModule
     ),
     canActivate: [AuthGuard],
-      
+
   },
-    {
+  {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthModule),
     data: { title: 'Login' },
     canActivate: [LoggedInAuthGuard],
-    
-  },
 
+  },
   {
-    path:'**', component:NotFoundComponent
-  }
+    path: 'not-found', component: NotFoundComponent
+  },
+  
+  { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+ 
 ];
 
 @NgModule({

@@ -13,15 +13,14 @@ export class AuthService {
   * Login user.
   * @param loginDetail - user details
   */
-  login(loginDetail: { email: string, password: string }): void {
-    console.log('loginDetail', loginDetail);
+  login(loginDetail: { email: string, password: string, userType: string }): void {
     // check for login here then update the user response in local storage
     const user: User = {
       id: 1,
-      firstName: 'Test',
-      fullName: 'Test Testing',
+      firstName: `test ${loginDetail.userType}`,
+      fullName: `Test ${loginDetail.userType}`,
       avatar: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg',
-      accountType: 'admin',
+      accountType: loginDetail.userType,
     }
     localStorage.setItem('loginCred', JSON.stringify(user));
   }
@@ -40,6 +39,14 @@ export class AuthService {
    */
   getUser(): User{
     return JSON.parse(localStorage.getItem('loginCred') ?? '[]');
+  }
+
+/**
+ * Returns the user's account type.
+ * @returns current user 
+ */
+  getUserType(): string {
+    return (this.getUser()?.accountType ?? '').toLowerCase();
   }
 
   /**

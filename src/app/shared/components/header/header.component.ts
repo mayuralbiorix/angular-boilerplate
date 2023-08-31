@@ -4,7 +4,7 @@ import { User } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { selectNavStatus } from 'src/app/store/app-selector';
 import { setNavStatus } from 'src/app/store/app-action';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private store: Store
-    ) {
+    private store: Store,
+  ) {
   }
 
   ngOnInit(): void {
@@ -43,8 +43,8 @@ export class HeaderComponent implements OnInit {
   /**
    * Updating the side nav status
    */
-  updateNavState(): void{
-    this.store.dispatch(setNavStatus({ navStatus: { isNavExpanded: !this.navExpanded} }));
+  updateNavState(): void {
+    this.store.dispatch(setNavStatus({ navStatus: { isNavExpanded: !this.navExpanded } }));
   }
 
   /**
