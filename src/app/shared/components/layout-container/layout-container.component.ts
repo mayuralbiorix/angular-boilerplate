@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { default as menuItemsByRole } from './menu-items.json';
 import { AuthService } from '../../services/auth.service';
@@ -26,7 +26,7 @@ export class LayoutContainerComponent implements OnInit {
 
   // items to be displayed in the left hand menu
   roleBasedMenuItems: SideNavMenu[] = [];
-
+  
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -34,12 +34,15 @@ export class LayoutContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navExpanded$ = this.store.select(selectNavStatus);
-    this.userRole = this.auth.getUserType()
-    this.getMenuItems();
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
-    this.watchForRouteChanges();
-    this.exapandTheSideNavUntilAlreadySelectedNav();
+    if (this.isUserLoggedIn) {
+      this.navExpanded$ = this.store.select(selectNavStatus);
+      this.userRole = this.auth.getUserType();
+      this.getMenuItems();
+      this.watchForRouteChanges();
+      this.exapandTheSideNavUntilAlreadySelectedNav();
+    }
+
   }
 
   /**
@@ -48,7 +51,7 @@ export class LayoutContainerComponent implements OnInit {
   private getMenuItems(): void {
     this.roleBasedMenuItems = (menuItemsByRole as { [key: string]: SideNavMenu[] })[this.userRole];
     // reset the side nav to collapse
-      this.resetSideNav(this.roleBasedMenuItems);
+    this.resetSideNav(this.roleBasedMenuItems);
   }
 
   /**

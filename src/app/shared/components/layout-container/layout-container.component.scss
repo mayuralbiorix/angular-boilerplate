@@ -4,6 +4,7 @@
   height: auto;
 
   &.navCollapse {
+    width: calc(100% + 250px);
     margin-left: -250px;
     transition: margin-left 150ms ease-out;
     nav {
@@ -44,17 +45,11 @@
     width: calc(100% - 250px);
     min-width: 320px;
     flex: 1;
-    padding-left: 10px;
+    padding: 16px;
 
     .content {
       min-height: 100%;
       box-sizing: border-box;
-    }
-
-    app-footer {
-      padding: 16px;
-      display: block;
-      transform: translateY(-100%);
     }
   }
 }

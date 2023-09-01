@@ -12,8 +12,16 @@ import { FooterComponent } from './components/footer/footer.component';
 // material imports
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 // directives 
 import { NavAutoCloseDirective } from './directives/auto-close.directive';
@@ -28,7 +36,7 @@ import { MenuItemComponent } from './components/menu-item/menu-item.component';
     FooterComponent,
     NavAutoCloseDirective,
     MenuItemComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -39,6 +47,13 @@ import { MenuItemComponent } from './components/menu-item/menu-item.component';
     ReactiveFormsModule,
     MatDividerModule,
     MatMenuModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatTooltipModule,
   ],
   exports: [
     LayoutContainerComponent,
@@ -52,6 +67,13 @@ import { MenuItemComponent } from './components/menu-item/menu-item.component';
     NavAutoCloseDirective,
     MatDividerModule,
     MatMenuModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatTooltipModule,
   ],
 })
 export class SharedModule { }

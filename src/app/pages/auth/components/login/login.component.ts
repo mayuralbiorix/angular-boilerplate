@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { PasswordValidator } from 'src/app/shared/validators/password-strength.validator';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
    form!: FormGroup;
 
    // to hide/show the entered password
-   hideShowPassword = true;
+   hidePassword = true;
  
    constructor(
      private fb: FormBuilder,
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
      // reactive form intialize
      this.form = this.fb.group({
        email: ['test@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-       password: ['Test@1234', [Validators.required, Validators.minLength(8)]],
+       password: ['Test@1234', [Validators.required, Validators.minLength(8), PasswordValidator.PasswordStrengthValidator]],
      });
    }
  
