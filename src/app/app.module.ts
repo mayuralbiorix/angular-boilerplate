@@ -12,11 +12,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { appReducer } from './store/app-reducer';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

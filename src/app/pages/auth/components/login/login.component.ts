@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 import { PasswordValidator } from 'src/app/shared/validators/password-strength.validator';
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
      private fb: FormBuilder,
      private auth: AuthService, 
      private router: Router,
-     private titleService: Title
+     private titleService: Title,
+     private loaderService: LoaderService,
    ) { 
     this.titleService.setTitle('Login');
    }
@@ -43,17 +45,21 @@ export class LoginComponent implements OnInit {
     * Submit the user login details
     * @returns 
     */
-   async login(userType: string): Promise<void> {
+   async login(): Promise<void> {
      if (this.form.invalid) {
        this.form.markAllAsTouched();
        return;
      }
+     this.loaderService.show();
      try {
-      this.auth.login({ ...this.form.value, userType });
+    setTimeout(()=>{
+      this.auth.login({ ...this.form.value, userType: 'employee' });
+      this.loaderService.hide();
       this.router.navigate(['/']);
+    }, 2000)
      } catch (error) {
-      console.log('error')
-     }
- 
+      console.log('error');
+      this.loaderService.hide();
+     } 
    }
 }

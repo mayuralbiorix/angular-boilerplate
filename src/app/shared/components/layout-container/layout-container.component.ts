@@ -27,6 +27,9 @@ export class LayoutContainerComponent implements OnInit {
   // items to be displayed in the left hand menu
   roleBasedMenuItems: SideNavMenu[] = [];
 
+  // to show or hide the default header
+  @Input() showHeader = true; 
+
   constructor(
     private auth: AuthService,
     private router: Router,

@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 // directives 
@@ -54,6 +55,7 @@ import { MenuItemComponent } from './components/menu-item/menu-item.component';
     MatDialogModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     LayoutContainerComponent,
@@ -74,6 +76,7 @@ import { MenuItemComponent } from './components/menu-item/menu-item.component';
     MatDialogModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatProgressSpinnerModule
   ],
 })
 export class SharedModule { }

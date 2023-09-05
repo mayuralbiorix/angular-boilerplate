@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Appstate, initialState } from './app-state';
-import { setNavStatus } from './app-action';
+import { setLoadingStatus, setNavStatus } from './app-action';
 
 export const appReducer = createReducer(
   initialState,
@@ -8,6 +8,13 @@ export const appReducer = createReducer(
     return {
       ...state,
       ...navStatus
+    };
+    
+  }),
+  on(setLoadingStatus, (state, { loadingStatus }): Appstate => {
+    return {
+      ...state,
+      ...loadingStatus
     };
   })
   );
