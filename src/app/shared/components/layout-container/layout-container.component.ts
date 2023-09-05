@@ -26,7 +26,7 @@ export class LayoutContainerComponent implements OnInit {
 
   // items to be displayed in the left hand menu
   roleBasedMenuItems: SideNavMenu[] = [];
-  
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -127,6 +127,7 @@ export class LayoutContainerComponent implements OnInit {
     this.router.events.pipe(takeUntil(this.onDestroySubject)).subscribe((routerEvent) => {
       // Some functions only need to be called on navigation end (when route change is completed)
       if (routerEvent instanceof NavigationEnd) {
+        this.resetSideNav(this.roleBasedMenuItems);
         this.exapandTheSideNavUntilAlreadySelectedNav();
       }
     });

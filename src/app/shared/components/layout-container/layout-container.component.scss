@@ -3,33 +3,15 @@
   width: 100%;
   height: auto;
 
-  &.navCollapse {
-    width: calc(100% + 250px);
-    margin-left: -250px;
-    transition: margin-left 150ms ease-out;
-    nav {
-      visibility: hidden;
-      transition: visibility 500ms 500ms;
-    }
-  }
-  &.navExpand {
-    transition: margin-left 150ms ease-out;
-    margin-left: 0; 
-
-    nav {
-      visibility: visible;
-      transition: none;
-    }
-  }
-
   nav {
     width: 250px;
     min-width: 250px;
     background-color: var(--white);
+    background-color: var(--grey-500);
     margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-    // color: var(--grey-50);
+    color: var(--white);
 
     .menuSection {
       width: calc(100% - 24px);
@@ -37,6 +19,18 @@
       padding-left: 0;
       box-sizing: border-box;
       position: relative;
+    }
+
+    &.navCollapse {
+      margin-left: -250px;
+      visibility: hidden;
+      transition: margin-left 350ms ease-out;
+    }
+
+    &.navExpand {
+      margin-left: 0;
+      visibility: visible;
+      transition: margin-left 350ms ease-out;
     }
   }
 

@@ -12,7 +12,9 @@ import { Store } from '@ngrx/store';
 })
 
 export class NavAutoCloseDirective {
+
   constructor(private store: Store) { }
+  
   /**
    * Listens for screen resize events.
    * 

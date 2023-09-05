@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PasswordValidator } from 'src/app/shared/validators/password-strength.validator';
@@ -19,14 +20,17 @@ export class LoginComponent implements OnInit {
    constructor(
      private fb: FormBuilder,
      private auth: AuthService, 
-     private router: Router
-   ) { }
+     private router: Router,
+     private titleService: Title
+   ) { 
+    this.titleService.setTitle('Login');
+   }
  
    ngOnInit() {
      // reactive form intialize
      this.form = this.fb.group({
        email: ['test@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-       password: ['Test@1234', [Validators.required, Validators.minLength(8), PasswordValidator.PasswordStrengthValidator]],
+       password: ['Test@123', [Validators.required, Validators.minLength(8), PasswordValidator.PasswordStrengthValidator]],
      });
    }
  

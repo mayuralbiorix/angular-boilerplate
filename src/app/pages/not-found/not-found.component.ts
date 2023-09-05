@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-not-found',
@@ -7,13 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
+  
+  constructor(
+    private titleService: Title,
+    private location: Location) {
+    this.titleService.setTitle('Not found');
+  }
 
-  constructor(private route: Router) { }
-    
   /**
    * Go back to the dashboard.
    */
   goBackDashboard(): void {
-    this.route.navigate(['/']);
+    this.location.back();
   }
 }

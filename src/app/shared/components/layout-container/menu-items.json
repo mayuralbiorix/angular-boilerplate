@@ -3,7 +3,7 @@
     {
       "string": "Dashboard",
       "icon": "restaurant_menu",
-      "link": "dashboard/employee-dashboard"
+      "link": "dashboard/employee"
     },
     {
       "string": "ME",
@@ -24,7 +24,7 @@
     {
       "string": "Dashboard",
       "icon": "restaurant_menu",
-      "link": "/dashboard/admin-dashboard"
+      "link": "/dashboard/admin"
     },
     {
       "string": "ME",

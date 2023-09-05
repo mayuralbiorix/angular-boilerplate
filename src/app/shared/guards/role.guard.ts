@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
+  
   constructor(private auth: AuthService, private router: Router) { }
 
   canActivate(

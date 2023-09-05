@@ -10,10 +10,12 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class LoggedInAuthGuard implements CanActivate {
+  
   constructor(
     private auth: AuthService,
     private router: Router
     ){}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

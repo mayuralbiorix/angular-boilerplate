@@ -9,7 +9,7 @@
     width: 100%;
     clear: both;
     text-decoration: none;
-    color: var(--grey-500);
+    color: var(--white);
     padding-right: 0;
     box-sizing: border-box;
     display: flex;
@@ -19,6 +19,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 0px 24px 24px 0px;
+    opacity: 0.5;
 
     div {
       display: flex;
@@ -30,13 +31,22 @@
       }
     }
 
-    &:hover {
-      background: var(--lilac-50);
+    .collapse-icon {
+      transform: rotate(0deg);
+      transition: transform 200ms;
+
+      &.collapsed {
+        transform: rotate(180deg);
+      }
     }
 
-    &.active {
-      background: var(--albiorix);
-      color: var(--white);
+    &:hover,&.active {
+      background-color: rgb(255 255 255 / 0.12);
+      opacity: 1;
+    }
+
+    &.hightlight{
+      opacity: 1;
     }
   }
 }

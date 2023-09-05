@@ -1,8 +1,8 @@
 <app-header></app-header>
 
 <div class="mainContent">
-  <div class="bodyContainer" [ngClass]="isUserLoggedIn ? (navExpanded$ | async) ? 'navExpand' : 'navCollapse' : ''">
-    <nav appNavAutoClose *ngIf="isUserLoggedIn">
+  <div class="bodyContainer">
+    <nav appNavAutoClose *ngIf="isUserLoggedIn"  [ngClass]="isUserLoggedIn ? (navExpanded$ | async) ? 'navExpand' : 'navCollapse' : ''">
       <div class="menuSection">
         <app-menu-item [menuItems]="roleBasedMenuItems"></app-menu-item>
       </div>
